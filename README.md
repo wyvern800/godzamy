@@ -19,4 +19,9 @@ $ yarn start
 $ yarn generate
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+## Task List
+
+* Update static assets.
+* Update home page.
+
+Code released under the [MIT](LICENSE) license.
