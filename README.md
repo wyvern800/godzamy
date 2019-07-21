@@ -1,6 +1,6 @@
-# godzamy
+# Godzamy
 
-> Godzamy&#39;s website.
+> Godzamy's website.
 
 ## Build Setup
 

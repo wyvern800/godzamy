@@ -1,0 +1,59 @@
+<template>
+  <main>
+    <div class="container">
+      <div>
+        <div>
+          <h1 v-if="statusCode === 404" class="title">
+            404
+          </h1>
+          <h1 v-else class="title">
+            500
+          </h1>
+        </div>
+        <h3 class="title is-1">
+          {{ message }}
+        </h3>
+        <p v-if="statusCode === 404">
+          <NuxtLink to="/">
+            Back to Home
+          </NuxtLink>
+        </p>
+        <p v-else>
+          An error occurred while rendering the page.
+        </p>
+      </div>
+    </div>
+  </main>
+</template>
+
+<script>
+export default {
+  name: 'NuxtError',
+  props: {
+    error: {
+      type: Object,
+      default: null
+    }
+  },
+  head() {
+    return {
+      title: this.message,
+      meta: [
+        {
+          name: 'viewport',
+          content:
+            'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'
+        }
+      ]
+    }
+  },
+  computed: {
+    statusCode() {
+      return (this.error && this.error.statusCode) || 500
+    },
+    message() {
+      return this.error.message || `Error`
+    }
+  }
+}
+</script>

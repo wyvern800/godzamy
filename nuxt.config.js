@@ -1,51 +1,73 @@
 module.exports = {
   mode: 'universal',
-  /*
-   ** Headers of the page
-   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Godzamy - Twitch Streamer',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content:
+          'Matheus Guilherme Ferreira A.K.A "Godzamy" is a new Twitch streamer based in Brazil, tune in to check more of his work and personal life.'
+      },
+      {
+        property: 'og:type',
+        content: 'website'
+      },
+      {
+        property: 'og:url',
+        content: 'https://godzamy.live/'
+      },
+      {
+        property: 'og:title',
+        content: 'Godzamy - Twitch Streamer'
+      },
+      {
+        property: 'og:description',
+        content:
+          'Matheus Guilherme Ferreira A.K.A "Godzamy" is a new Twitch streamer based in Brazil, tune in to check more of his work and personal life.'
+      },
+      {
+        property: 'og:image',
+        content: '/og-image.jpg'
+      },
+      {
+        property: 'twitter:card',
+        content: 'summary'
+      },
+      {
+        property: 'twitter:title',
+        content: 'Godzamy - Twitch Streamer'
+      },
+      {
+        property: 'twitter:description',
+        content:
+          'Matheus Guilherme Ferreira A.K.A "Godzamy" is a new Twitch streamer based in Brazil, tune in to check more of his work and personal life.'
+      },
+      {
+        property: 'twitter:url',
+        content: 'https://godzamy.live/'
+      },
+      {
+        property: 'twitter:image',
+        content: '/og-image.jpg'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
-  /*
-   ** Customize the progress-bar color
-   */
   loading: { color: '#fff' },
-  /*
-   ** Global CSS
-   */
-  css: [],
-  /*
-   ** Plugins to load before mounting the App
-   */
+  css: ['~assets/stylesheets/main.scss'],
   plugins: [],
-  /*
-   ** Nuxt.js modules
-   */
   modules: [
-    // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma',
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
+  styleResouces: {
+    scss: ['~assets/stylesheets/main.scss']
+  },
   axios: {},
-  /*
-   ** Build configuration
-   */
   build: {
     postcss: {
       preset: {
@@ -54,9 +76,6 @@ module.exports = {
         }
       }
     },
-    /*
-     ** You can extend webpack config here
-     */
     extend(config, ctx) {}
   }
 }
