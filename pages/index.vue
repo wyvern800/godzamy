@@ -1,7 +1,13 @@
 <template>
-  <div class="container" />
+  <hero />
 </template>
 
 <script>
-export default {}
+import Hero from '~/components/Hero.vue'
+
+export default {
+  components: {
+    Hero
+  }
+}
 </script>
