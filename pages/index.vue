@@ -1,5 +1,7 @@
 <template>
-  <hero />
+  <div class="app">
+    <hero />
+  </div>
 </template>
 
 <script>
