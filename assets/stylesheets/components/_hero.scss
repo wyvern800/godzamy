@@ -1,0 +1,29 @@
+.hero {
+
+  .image {
+
+    img {
+      width: 20rem;
+    }
+  }
+
+  .status {
+    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      margin-left: 0.25rem;
+    }
+
+    .icon {
+      height: 0.75rem;
+      width: 0.75rem;
+      border-radius: $radius-large;
+    }
+  }
+
+  .button {
+    margin-top: 1.25rem;
+  }
+}
