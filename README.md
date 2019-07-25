@@ -21,7 +21,7 @@ $ yarn generate
 
 ## Task List
 
-* Update static assets.
 * Update home page.
+* Double check metas.
 
 Code released under the [MIT](LICENSE) license.
