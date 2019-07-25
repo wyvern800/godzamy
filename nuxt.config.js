@@ -62,10 +62,14 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/eslint-module',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/google-analytics'
   ],
   styleResouces: {
     scss: ['~assets/stylesheets/main.scss']
+  },
+  googleAnalytics: {
+    id: 'UA-99701450-2'
   },
   axios: {},
   build: {
