@@ -11,6 +11,7 @@
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt generate",
+    "predeploy": "yarn generate",
     "deploy": "gh-pages -d dist -b master -t -x"
   },
   "dependencies": {
