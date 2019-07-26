@@ -1,1 +1,10 @@
-// @import url("https://fonts.googleapis.com/css?family=Poppins|Raleway&display=swap");
+// Google fonts
+@import url("https://fonts.googleapis.com/css?family=Poppins|Raleway&display=swap");
+// Fonts families override
+$family-primary: "Poppins", sans-serif;
+$family-secondary: "Raleway", sans-serif;
+// Body fonts override
+$body-family: $family-secondary;
+// Title fonts override
+$title-family: $family-primary;
+$title-weight: $weight-normal;
