@@ -22,6 +22,6 @@ $ yarn generate
 ## Task List
 
 * Update home page.
-* Double check metas.
+* Add basic transitions.
 
 Code released under the [MIT](LICENSE) license.
