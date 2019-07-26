@@ -6,10 +6,14 @@
           <img class="is-rounded" src="~/assets/images/godzamy.jpg" alt="" />
         </figure>
         <div class="status is-flex">
-          <span class="icon has-background-success" />
-          <p class="title is-6">online</p>
+          <span :class="classChecker" class="icon" />
+          <p class="title is-6" v-text="statusChecker" />
         </div>
-        <button class="button is-rounded is-medium is-success">Assistir</button>
+        <button
+          :class="classChecker"
+          class="button is-rounded is-medium"
+          v-text="isOnline ? 'Assistir' : 'Atualizar'"
+        />
       </div>
     </div>
     <div class="hero-foot">
@@ -31,5 +35,30 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      isOnline: false,
+      isChecking: false
+    }
+  },
+  computed: {
+    classChecker() {
+      return {
+        'has-background-success is-success': this.isOnline && !this.isChecking,
+        'has-background-danger is-danger': !this.isOnline && !this.isChecking,
+        'has-background-grey-light is-light is-inverted': this.isChecking
+      }
+    },
+    statusChecker() {
+      if (this.isOnline && !this.isChecking) {
+        return 'online'
+      } else if (!this.isOnline && !this.isChecking) {
+        return 'offline'
+      } else {
+        return 'atualizando'
+      }
+    }
+  }
+}
 </script>
