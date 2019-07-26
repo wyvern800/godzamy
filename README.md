@@ -23,5 +23,6 @@ $ yarn generate
 
 * Update home page.
 * Double check metas.
+* Update error pages.
 
 Code released under the [MIT](LICENSE) license.
