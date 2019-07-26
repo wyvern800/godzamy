@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="hero-foot">
-      <div class="container has-text-right">
+      <div class="container has-text-right has-text-centered-mobile">
         <p class="has-text-grey-lighter">
           made with love by
           <a
