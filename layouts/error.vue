@@ -1,16 +1,16 @@
 <template>
-  <main>
-    <div class="container">
-      <div>
-        <div>
-          <h1 v-if="statusCode === 404" class="title">
+  <main class="error hero is-fullheight">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="status-code">
+          <h1 v-if="statusCode === 404" class="title is-1">
             404
           </h1>
-          <h1 v-else class="title">
+          <h1 v-else class="title is-1">
             500
           </h1>
         </div>
-        <h3 class="title is-1">
+        <h3 class="title is-3">
           {{ message }}
         </h3>
         <p v-if="statusCode === 404">
