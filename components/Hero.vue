@@ -75,7 +75,7 @@ export default {
       if (!this.isOnline) {
         this.isChecking = !this.isChecking
         await new Promise((resolve) => {
-          setTimeout(resolve, 1000)
+          setTimeout(resolve, 1500)
         })
         this.$axios.setHeader('Client-ID', process.env.api_key)
         const status = await this.$axios.get(
