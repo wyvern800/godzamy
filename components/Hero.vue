@@ -36,7 +36,17 @@
 </template>
 
 <script>
+/* eslint-disable space-before-function-paren */
+
+import throttle from 'lodash/throttle'
+
 export default {
+  props: {
+    isOnline: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       isChecking: false
@@ -61,7 +71,7 @@ export default {
     }
   },
   methods: {
-    async checkStatus(event) {
+    checkStatus: throttle(async function(event) {
       if (!this.isOnline) {
         this.isChecking = !this.isChecking
         this.$axios.setHeader('Client-ID', process.env.api_key)
@@ -75,13 +85,7 @@ export default {
       } else {
         window.open('https://twitch.tv/godzamy')
       }
-    }
-  },
-  props: {
-    isOnline: {
-      type: Boolean,
-      default: false
-    }
+    }, 1000)
   }
 }
 </script>
