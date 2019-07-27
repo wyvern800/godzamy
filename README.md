@@ -25,7 +25,6 @@ $ yarn deploy
 ## Task List
 
 * Fix color scheme.
-* Throttle events.
 * Add basic transitions.
 
 Code released under the [MIT](LICENSE) license.
