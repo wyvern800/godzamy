@@ -17,6 +17,9 @@ $ yarn start
 
 # generate static project
 $ yarn generate
+
+# deploy static project
+$ yarn deploy
 ```
 
 ## Task List
