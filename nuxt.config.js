@@ -56,6 +56,9 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  env: {
+    api_key: process.env.API_KEY || '6poegtwek7fb3dkb9g03kbtt6mbhj3'
+  },
   loading: { color: '#fff' },
   css: ['~assets/stylesheets/main.scss'],
   plugins: [],
@@ -71,7 +74,10 @@ module.exports = {
   googleAnalytics: {
     id: 'UA-99701450-2'
   },
-  axios: {},
+  axios: {
+    baseURL: 'https://api.twitch.tv',
+    https: true
+  },
   build: {
     postcss: {
       preset: {

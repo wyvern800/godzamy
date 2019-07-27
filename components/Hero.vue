@@ -12,6 +12,7 @@
         <button
           :class="classChecker"
           class="button is-rounded is-medium"
+          @click="checkStatus"
           v-text="isOnline ? 'Assistir' : 'Atualizar'"
         />
       </div>
@@ -38,7 +39,6 @@
 export default {
   data() {
     return {
-      isOnline: false,
       isChecking: false
     }
   },
@@ -58,6 +58,29 @@ export default {
       } else {
         return 'atualizando'
       }
+    }
+  },
+  methods: {
+    async checkStatus(event) {
+      if (!this.isOnline) {
+        this.isChecking = !this.isChecking
+        this.$axios.setHeader('Client-ID', process.env.api_key)
+        const status = await this.$axios.get(
+          '/helix/streams?user_login=godzamy'
+        )
+        if (status.data.data.length) {
+          this.isOnline = !this.isOnline
+        }
+        this.isChecking = !this.isChecking
+      } else {
+        window.open('https://twitch.tv/godzamy')
+      }
+    }
+  },
+  props: {
+    isOnline: {
+      type: Boolean,
+      default: false
     }
   }
 }
