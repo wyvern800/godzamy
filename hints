@@ -1,0 +1,170 @@
+Passos para criar um aplicativo react para web
+--------------------------------------------------------
+
+= Primeiros passos:
+1 - yarn init -y (criar o package.json)
+2 - crie duas pastas na raiz do projeto: public, src
+3 - yarn add react (instalar o pacote react - para todos os ambientes de desenvolvimento)
+4 - yarn add react-dom (instalar integração do react com a dom - usado em desenvolvimento web) 
+
+= Configurações primárias:
+Conseguir dar pro browser para uma forma de ele entender o javascript que é utilizado pelo react (mais moderno).
+Passos: 
+1. Criar um arquivo index.html dentro da pasta 'public'
+2. Abra o arquivo index.html e use o snippet html:5.
+3. Coloque um <title> para a aplicação, e no body insira uma <div id="app"> (div#app)
+4. Insira o script nele <script src="bundle.js"></script>
+
+= Instalações necessárias  pro navegador entender o react:
+1- Babel (Convertedor (transpliador) de código do react para um código que o browser entenda)
+2- Webpack (Para cada tipo de arquivo (.js, .css, .png) eu vou converter o código de uma maneira diferente)
+3- Conceito de Loaders (utilizado pelo webpack para dar sentido ao javascript): babel-loader, css-loader, image-loader, file-loader)
+
+== Configurando o Babel:
+1- yarn add @babel/core @babel/preset-env @babel/preset-react @babel/cli @babel/plugin-transform-runtime -D webpack webpack-cli
+2- Na raiz do projeto criar um arquivo chamado: babel.config.js
+3- Dentro desse arquivo criado, exportar um objeto de configurações:
+//////////
+module.exports = {
+  presets: [
+    '@babel/preset-env',  // converter o código de javascript moderno para um mais antigo, baseado no ambiente de aplicação
+    '@babel/preset-react',
+  ],
+  plugins: [
+    '@babel/plugin-transform-runtime'
+  ]
+}
+//////////
+
+= Comandos principais
+Como gerar um bundle.js? - yarn babel src/index.js> --out-file public/bundle.js
+
+== Configurando o Webpack:
+1- yarn add webpack webpack-cli
+2- Na raiz do projeto criar um arquivo chamado: webpack.config.js
+3- Instalar o babel-loader: yarn add babel-loader
+4- Dentro desse arquivo criado, exportar um objeto de configurações:
+//////////
+const path = require('path');
+
+module.exports = {
+  entry: path.resolve(__dirname, 'src', 'index.js'), // arquivo de entrada da nossa aplicação (src/index.js)
+  output: {
+    path: path.resolve(__dirname, 'public'), // diretório arquivo que vai ser gerado após ser convertido
+    filename: 'bundle.js' // nome do arquivo que vai ser gerado pós conversão (bundle.js)
+  },
+  module: {
+    rules: [
+      {
+         test: /\.js$/,   // apenas arquivos que terminam com .js
+         exclude: /node_modules/, // excluir os arquivos do node da transpilação
+         use: {
+           loader: 'babel-loader',
+         }
+      }      
+    ]
+  },
+};
+//////////
+5- Instalar o monitor de updates do webpack (para atualizar o bundle sempre que o mesmo sofrer mudanças): yarn add webpack-dev-server
+6- Dentro do 'webpack.config.js' embaixo de output:{}; adicionar:
+//////////
+devServer: {
+  contentBase: path.resolve(__dirname, 'public'), // caminho pro diretório onde contém os arquivos públicos da aplicação
+},
+//////////
+
+= Comandos principais
+Converter os arquivos .js para o bundle (criar bundle): yarn webpack --mode development 
+Ligar o servidor de desenvolvimento (webpack-dev-server): yarn webpack-dev-server --mode development
+
+
+== Componetização (JSX JavaScript XML):
+1- Crie um arquivo na pasta src chamado 'App.js'
+2- Insira um rfc (React Functional Component) com o snippet da rocketseat dentro
+3- Dentro do App.js insira:
+///////////
+import Header from "./components/Header"; // no topo
+
+e no método render():
+<>
+  <Header />
+</>
+///////////
+3- Crie uma pasta chamada 'components' e crie um arquivo chamado 'Header.js'
+4- Adicione um rfc e no render coloque algo que aparecerá na tela para testes
+5- Crie um arquivo chamado 'index.js' na pasta src e cole dentro:
+//////////
+import React from "react";
+import { render } from "react-dom";
+
+import App from "./App";
+
+render(<App />, document.getElementById("app"));
+//////////
+
+== Importando CSS e Imagens
+1- Executar os comandos: yarn add style-loader css-loader
+2- Criar uma nova regra em 'webpack.config.js' em module >> rules
+//////////
+{
+    test: /\.css$/, // para arquivos que terminam em css
+        exclude: /node_modules/,
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }],
+ },
+//////////
+3- Na pasta src, criar uma arquivo de css chamado App.css e bota dentro
+//////////
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #F5F5F5;
+  font: 14px sans-serif;
+  color: #333;
+}
+//////////
+4- Abra o App.js e importa o App.css: import './App.css';
+5- Abra o arquivo package.json e adicione esse script para facilitar 
+//////////
+"scripts": {
+  "dev": "webpack-dev-server --mode development", // pra ligar o server de desenvolvimento
+  "build": "webpack --mode production" // para quando estivermos no modo de produção
+},
+//////////
+
+6- Adicionar file-loader (pra carregar as imagens) - yarn add file-loader
+7- Abra o arquivo webpack.config.js e adicione mais uma rule
+//////////
+{
+  test: /.*\.(gif|png|jpe?g)$/i, // Pode haver quantos caracteres quiser, escapa o . , pega todos os tipos de imagem, e o i é para pegar case insensitive
+  //não precisa do exclude node modules pq não tem imagem dentro do node-modules
+  use: {
+    loader: 'file-loader',
+  }
+},
+//////////
+8- Crie uma pasta dentro de src, chamada 'assets' e jogue uma imagem para testes
+9- Importa ela dentro do App.js: import nomedaImagem from './assets/nomedaimagem.extensão'
+
+
+== Instalando o pacote de requisições (axios)
+1- yarn add axios
+1- Criar uma pasta 'services' dentro de src e criar um arquivo chamado 'api.js'
+2- dentro do arquivo agora, deixá-lo assim:
+//////////
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: 'http://localhost:3333'
+});
+
+export default api;
+//////////
+3- Abre o arquivo 'App.js' e importa a api nele: import api from './services/api';
+
+PRONTO, TEMOS A NOSSA BASE PARA COMEÇAR A CRIAR NOSSA APLICAÇÃO =)

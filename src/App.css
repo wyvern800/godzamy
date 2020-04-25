@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 14px sans-serif;
+  color: #333;
+}
+
+td.command-name,
+td.command-example,
+td.command-price {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 15px;
+}
+
+td.command-action,
+td.command-cooldown {
+  vertical-align: middle;
+}
+
+h3.page-name {
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#test1 td:not(:first-child) {
+  display: none;
+}
+
+td.category {
+  display: table-cell;
+  text-align: center;
+  background-color: #ddd;
+}
+
+strong.nametext {
+  margin-left: 10px;
+}
+
+strong.credits {
+  font-size: 15px;
+}
+
+div.commands-table {
+  width: 100%;
+  margin: 20 auto;
+  padding: 30px;
+}
+
+table.tabela {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
+}
+
+table.tabela td,
+table.tabela th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table.tabela th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4caf50;
+  color: white;
+}
+
+header.page-title {
+  padding-top: 80px;
+}
+
+div.teta-points-explanation {
+  text-align: center;
+  font-size: 12px;
+}
